@@ -1,41 +1,46 @@
 /*
  * @Author: fzf404
  * @Date: 2022-07-20 12:52:31
- * @LastEditors: fzf404 hi@fzf404.art
- * @LastEditTime: 2022-11-09 20:54:38
+ * @LastEditors: fzf404 me@fzf404.art
+ * @LastEditTime: 2023-04-01 15:25:53
  * @Description: light 明亮主题
  */
 
 /*
  * 基底
  */
+
 #app {
-  @apply bg-gray-300 bg-opacity-50;
+  @apply bg-gray-300 bg-opacity-40;
 }
 
 /*
  * 文字
  */
 
-.text-light {
+.text-primary {
   @apply text-gray-100;
 }
 
-.text-gray {
-  @apply text-gray-300;
+.text-secondary {
+  @apply text-gray-200;
 }
 
-.text-deep {
+.text-dark {
   @apply text-gray-500;
+}
+
+.text-theme {
+  @apply text-sky-400;
+}
+
+.icon-theme {
+  @apply text-orange-400 hover:text-orange-500;
 }
 
 /*
  * 背景
  */
-
-.text-theme {
-  @apply text-sky-400;
-}
 
 .bg-theme {
   @apply bg-blue-400;
@@ -50,7 +55,7 @@
  */
 
 .modal {
-  @apply bg-gray-500 bg-opacity-50;
+  @apply bg-gray-300 bg-opacity-40;
 }
 
 /*
@@ -59,7 +64,7 @@
 
 .setting {
   ul {
-    @apply bg-gray-200 ring-blue-400  ring-opacity-50;
+    @apply bg-gray-200 ring-blue-400 ring-opacity-50;
 
     // 设置内容
     li {
@@ -89,7 +94,7 @@
 
     // 设置操作
     ol {
-      button {
+      button:last-child {
         @apply btn-blue;
       }
     }

@@ -1,10 +1,11 @@
 <!--
  * @Author: fzf404
  * @Date: 2022-07-22 00:24:58
- * @LastEditors: fzf404 hi@fzf404.art
- * @LastEditTime: 2022-11-09 16:53:11
- * @Description: winer 布局
+ * @LastEditors: fzf404 me@fzf404.art
+ * @LastEditTime: 2023-04-17 21:14:57
+ * @Description: wine 布局
 -->
+
 <template>
   <nav class="z-50">
     <!-- 状态控制器 -->
@@ -13,22 +14,14 @@
       <SettingSVG
         v-show="pinia.hasSetting"
         class="hover-dynamic btn-svg w-5 text-blue-400"
-        @click="pinia.toggleSetting()"
-      />
+        @click="pinia.toggleSetting()" />
       <!-- 主题 -->
-      <LightSVG
-        v-if="store.theme === theme.dark.class"
-        class="hover-dynamic btn-svg w-5 text-orange-400"
-        @click="store.theme = theme.light.class"
-      />
-      <PunkSVG
-        v-else-if="store.theme === theme.light.class"
-        class="hover-dynamic btn-svg w-5 text-yellow-400"
-        @click="store.theme = theme.punk.class"
-      />
-      <DarkSVG v-else class="hover-dynamic btn-svg w-5 text-indigo-300" @click="store.theme = theme.dark.class" />
+      <component :is="theme.icon" class="hover-dynamic btn-svg icon-theme w-5" @click="store.theme = theme.next" />
       <!-- 布局 -->
-      <WineSVG class="hover-dynamic btn-svg w-5 text-cyan-500" @click="store.layout = layout.maco.name" />
+      <component
+        :is="layout.icon"
+        class="hover-dynamic btn-svg w-5 text-green-400"
+        @click="store.layout = layout.next" />
       <!-- 断网提示 -->
       <WifiSVG v-show="!pinia.hasNetwork" class="hover-dynamic btn-svg w-5 text-red-400" />
     </ul>
@@ -37,38 +30,28 @@
       <!-- 置顶 -->
       <UpSVG
         class="btn-svg hover-dynamic w-5 text-green-400"
-        :class="{ 'rotate-180': store.top }"
-        @click="store.top = !store.top"
-      />
+        :class="{ 'rotate-180': !store.top }"
+        @click="store.top = !store.top" />
       <!-- 最小化 -->
-      <MiniSVG class="btn-svg hover-dynamic w-5 text-yellow-400" @click="sendEvent('win-mini')" />
+      <MiniSVG class="btn-svg hover-dynamic w-5 text-yellow-400" @click="sendEvent('plugin-mini')" />
       <!-- 关闭 -->
-      <CloseSVG class="btn-svg hover-dynamic w-5 text-red-400" @click="sendEvent('win-close')" />
+      <CloseSVG class="btn-svg hover-dynamic w-5 text-red-400" @click="sendEvent('plugin-close')" />
     </ul>
   </nav>
 </template>
 
 <script setup>
-import { sendEvent } from '#/ipc'
-
-import { main } from '@/pinia'
-
 import CloseSVG from '@/assets/layout/close.svg'
 import MiniSVG from '@/assets/layout/mini.svg'
-import UpSVG from '@/assets/layout/up.svg'
-
-import WineSVG from '@/assets/layout/wine.svg'
-
-import DarkSVG from '@/assets/layout/dark.svg'
-import LightSVG from '@/assets/layout/light.svg'
-import PunkSVG from '@/assets/layout/punk.svg'
-
 import SettingSVG from '@/assets/layout/setting.svg'
+import UpSVG from '@/assets/layout/up.svg'
 import WifiSVG from '@/assets/layout/wifi.svg'
+import { main } from '@/pinia'
+import { sendEvent } from '~/event/send'
 
-// 初始化 pinia
+// 初始化全局状态
 const pinia = main()
 
-// 初始化 props
+// 初始化插件值
 defineProps(['layout', 'theme', 'store'])
 </script>

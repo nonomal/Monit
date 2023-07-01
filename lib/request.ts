@@ -1,8 +1,8 @@
 /*
  * @Author: fzf404
  * @Date: 2022-05-18 23:06:12
- * @LastEditors: fzf404 hi@fzf404.art
- * @LastEditTime: 2022-10-31 13:15:35
+ * @LastEditors: fzf404 me@fzf404.art
+ * @LastEditTime: 2023-04-17 21:23:15
  * @Description: axios 封装
  */
 
@@ -10,16 +10,16 @@ import axios from 'axios'
 
 import { main } from '@/pinia'
 
-// 初始化 pinia
+// 初始化全局状态
 const pinia = main()
 
 // 初始化请求
 const request = (url: string) => {
-  // axios 实例
+  // 请求实例
   const service = axios.create({
-    baseURL: url, // 基本路径
+    baseURL: url, // 基础路径
     timeout: 30000, // 超时时间
-    withCredentials: true, // 携带 Cookie
+    withCredentials: true // 携带 Cookie
   })
 
   // 响应拦截
@@ -28,13 +28,16 @@ const request = (url: string) => {
       // 响应成功
       pinia.online()
       // 返回数据
-      return res.data
+      return Promise.resolve(res.data)
     },
     (err) => {
       // 响应失败
       pinia.offline()
+      // 返回错误
+      return Promise.reject(err)
     }
   )
+
   return service
 }
 

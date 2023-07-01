@@ -1,41 +1,46 @@
 /*
  * @Author: fzf404
  * @Date: 2022-07-20 12:52:31
- * @LastEditors: fzf404 hi@fzf404.art
- * @LastEditTime: 2022-11-09 20:54:24
+ * @LastEditors: fzf404 me@fzf404.art
+ * @LastEditTime: 2023-04-01 15:26:14
  * @Description: punk 赛博主题
  */
 
 /*
  * 基底
  */
+
 #app {
-  @apply bg-indigo-700 bg-opacity-50;
+  @apply bg-indigo-600 bg-opacity-40;
 }
 
 /*
  * 文字
  */
 
-.text-light {
+.text-primary {
   @apply text-gray-200;
 }
 
-.text-gray {
+.text-secondary {
   @apply text-amber-300;
 }
 
-.text-deep {
+.text-dark {
   @apply text-indigo-600;
+}
+
+.text-theme {
+  @apply text-red-400;
+}
+
+.icon-theme {
+  @apply text-yellow-400 hover:text-yellow-500;
 }
 
 /*
  * 主题
  */
-
-.text-theme {
-  @apply text-red-400;
-}
 
 .bg-theme {
   @apply bg-orange-400;
@@ -48,13 +53,15 @@
 /*
  * 模态框
  */
+
 .modal {
-  @apply bg-indigo-800 bg-opacity-50;
+  @apply bg-indigo-600 bg-opacity-40;
 }
 
 /*
  * 设置
  */
+
 .setting {
   ul {
     @apply bg-amber-200 ring-indigo-400 ring-opacity-50;
@@ -68,7 +75,7 @@
       }
 
       select {
-        @apply bg-gray-200 text-indigo-500 shadow-inner focus:text-indigo-400;
+        @apply bg-gray-200 text-indigo-500 shadow-inner focus:text-indigo-600;
       }
 
       button {
@@ -87,8 +94,8 @@
 
     // 设置操作
     ol {
-      button {
-        @apply bg-indigo-500 hover:bg-indigo-600;
+      button:last-child {
+        @apply btn-indigo;
       }
     }
   }
